@@ -3,6 +3,8 @@ SZ=13
 if [ -n "$1" ]; then
 	SZ=$1
 fi
+# Downgrade the protobuf package to 3.20.x or lower
+pip install protobuf==3.20.3
 python -m transformers.models.llama.convert_llama_weights_to_hf \
     --input_dir llama-dl --model_size ${SZ}B --output_dir llama-hf/${SZ}B
 python -m fastchat.model.apply_delta \
